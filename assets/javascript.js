@@ -1,29 +1,29 @@
 $(document).ready(function () {
 
     // Created array of characters for buttons
-    var gameOfThrones = ["Daenerys Targaryen", "Khal Drogo", "Tyrion Lannister", "Tormund Giantsbane", "Cersei Lannister"];
+    var topics = ["sustainability", "dance", "dogs", "makeup", "game of thrones"]
 
     // Added characters to buttons 
     startButtons()
 
     function startButtons() {
 
-        for (var i = 0; i < gameOfThrones.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
             var btn = $("<button>");
-            btn.addClass("people");
-            btn.attr("data-name", gameOfThrones[i]);
-            btn.text(gameOfThrones[i]);
+            btn.addClass("things");
+            btn.attr("data-name", topics[i]);
+            btn.text(topics[i]);
             $("#buttons").append(btn);
         }
     }
 
     $("button").on("click", function () {
-        var gameOfThrones = $(this).attr("data-name");
+        var topics = $(this).attr("data-name");
         // API and AJAX call for data 
-        function displayGOT() {
-            var people = $(this).attr("data-name");
+        function displayTopic() {
+            var topicArr = $(this).attr("data-name");
 
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + people + "&api_key=RWcQa96VrWKmA6zE8cwvGroz4LEmqB8j&limit=10";
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topicArr + "&api_key=RWcQa96VrWKmA6zE8cwvGroz4LEmqB8j&limit=10";
 
             $.ajax({
                 url: queryURL,
@@ -46,12 +46,12 @@ $(document).ready(function () {
 
                             var p = $("<p>").text("Rating: " + rating);
 
-                            var characterImage = $("<img>");
+                            var topicImage = $("<img>");
 
-                            characterImage.attr("src", results[i].images.fixed_height.url);
+                            topicImage.attr("src", results[i].images.fixed_height.url);
 
                             gifs.append(p);
-                            gifs.append(characterImage);
+                            gifs.append(topicImage);
 
                             $("#gifImages").prepend(gifs);
                         }
@@ -62,4 +62,5 @@ $(document).ready(function () {
         // look at the response in the console
         // create a variable called rating and save the response.rating
         // prepend to id = "gifImages});
-        // jQuery onclick for the button;
+        // jQuery onclick for the button
+    })});
