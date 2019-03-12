@@ -45,12 +45,20 @@ $(document).ready(function () {
                 // gifs.append(p);
                 $("#gifImages").append(topicImage);
                 // $("#gifImages").prepend(gifs);
+                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+    // Dynamically create gif div
+                var gifs = $("<div>");
+    
+            // Creating rating and adding the text
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+                $("#gifImages").append(p);
             }
-        })
+        }
             // When data comes back from API
-        });          
+    });          
             
-    });
+});
     
     
 
@@ -70,12 +78,7 @@ $(document).ready(function () {
 
 
 // setting rating 
-//                         if (results[i].rating === "r" && results[i].rating === "pg-13" && results[i].rating === "pg") {
-//                 // Dynamically create gif div
-//                             var gifs = $("<div>");
-//                 // Creating rating and adding the text
-                            //  var rating = results[i].rating;
-                            //  var p = $("<p>").text("Rating: " + rating);
+//                         
                             // Taking the imagin and storing in div, then giving attr of fixed height
                             
 
@@ -84,4 +87,4 @@ $(document).ready(function () {
                 // prepending image to html div 
                            
 
-                
+})              
