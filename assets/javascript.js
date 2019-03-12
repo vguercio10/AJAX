@@ -6,16 +6,25 @@ $(document).ready(function () {
     // Added my topics to buttons 
     
 
-    function startButtons(arrayAdd, classAdd, placeToPut) {
-
-        for (var i = 0; i < arrayAdd.length; i++) {
+    function startButtons() {
+        $("#buttons").empty();
+        for (var i = 0; i < topics.length; i++) {
             var btn = $("<button>");
-            btn.addClass(classAdd);
-            btn.attr("data-name", arrayAdd[i]);
-            btn.text(arrayAdd[i]);
-            $(placeToPut).append(btn);
+            btn.addClass("topicClass");
+            btn.attr("data-name", topics[i]);
+            btn.text(topics[i]);
+            $("#buttons").append(btn);
         }
-    }
+    };
+    $("#buttonToClick").on("click", function (event) {
+        event.preventDefault();
+        var userData = $("#userChoice").val().trim();
+        if (userData != " ") {
+            topics.push(userData);
+            startButtons();
+            $("#userChoice").val();
+        }
+    });
 // Event listener for buttons
     // $("button").on("click", function () {
         // var interests = $(this).attr("data-name");
@@ -23,7 +32,7 @@ $(document).ready(function () {
         startButtons(topics, "gif-button", "#buttons");
         
 // API and AJAX call for data 
-        $(document).on("click", ".gif-button", function (){
+        $(document).on("click", ".topicClass", function (){
             $("#gifImages").empty();
             var topic = $(this).attr("data-name");
 
@@ -79,6 +88,7 @@ $(document).on("click", ".pic", function() {
       $(this).attr("data-state", "still");
     }
   });
+
     
 
                     //loop through the results and display the images just like the buttons
